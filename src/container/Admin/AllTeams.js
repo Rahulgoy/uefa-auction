@@ -23,12 +23,14 @@ const StyledTableRow = withStyles((theme) => ({
 
 const AllTeams = ({ team }) => {
   const [balance, setBalance] = useState(0);
+  const [wage, setWage] = useState(0);
   const sendBalance = (e) => {
     e.preventDefault();
     db.collection("users")
       .doc(team.id)
       .update({
         teamBalance: balance,
+        teamWage: wage,
       })
       .then(console.log("Done"))
       .catch((err) => {
@@ -42,8 +44,9 @@ const AllTeams = ({ team }) => {
         <StyledTableCell>{team.data.teamName}</StyledTableCell>
         <StyledTableCell>{team.id}</StyledTableCell>
         <StyledTableCell>{team.data.teamBalance}</StyledTableCell>
-        <StyledTableCell>
-          <form onSubmit={sendBalance}>
+
+        <form onSubmit={sendBalance}>
+          <StyledTableCell>
             <input
               type="number"
               onChange={(event) => {
@@ -52,8 +55,19 @@ const AllTeams = ({ team }) => {
               }}
             />
             <button type="submit">Update</button>
-          </form>
-        </StyledTableCell>
+          </StyledTableCell>
+          <StyledTableCell>{team.data.teamWage}</StyledTableCell>
+          <StyledTableCell>
+            <input
+              type="number"
+              onChange={(event) => {
+                event.preventDefault();
+                setWage(event.target.value);
+              }}
+            />
+            <button type="submit">Update</button>
+          </StyledTableCell>
+        </form>
       </StyledTableRow>
     </div>
   );

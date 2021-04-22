@@ -9,7 +9,10 @@ const General = ({ player }) => {
       <h1 style={{ color: "blue" }}>{player.teamName}</h1>
       <h3>{player.initials}</h3>
       <h3 style={{ color: "blue" }}>
-        {player.teamBalance ? player.teamBalance / 100 : "No Balance"}Cr
+        {player.teamBalance ? player.teamBalance : "No Balance"} M
+      </h3>
+      <h3 style={{ color: "blue" }}>
+        {player.teamWage ? player.teamWage : "No Wage"} M
       </h3>
     </div>
   );

@@ -32,7 +32,7 @@ const Navbar = (props) => {
 
   const SignedInLinks = (
     <ul className="navMenu">
-      {auth.uid === "zZfVKoYwMWURII0q8tmvK6rvXvi1" ? (
+      {auth.uid === "HwV4GQfs7kQk6NAGxeHwsInIMfs2" ? (
         <li className="li">
           {" "}
           <NavLink to="/admin" className={classes.linkUnderline}>

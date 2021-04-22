@@ -54,7 +54,7 @@ const UserUpdate = ({ auth }) => {
   useEffect(() => {
     fetchTeam();
   }, []);
-  if (auth.uid !== "zZfVKoYwMWURII0q8tmvK6rvXvi1") return <Redirect to="/" />;
+  if (auth.uid !== "HwV4GQfs7kQk6NAGxeHwsInIMfs2") return <Redirect to="/" />;
 
   return (
     <Container>
@@ -72,6 +72,8 @@ const UserUpdate = ({ auth }) => {
                     <StyledTableCell>Team Id</StyledTableCell>
                     <StyledTableCell>Balance</StyledTableCell>
                     <StyledTableCell>Update Balance</StyledTableCell>
+                    <StyledTableCell>Wage</StyledTableCell>
+                    <StyledTableCell>Update Wage</StyledTableCell>
                   </TableRow>
                 </TableHead>
 

@@ -12,14 +12,17 @@ const Players = ({ players }) => {
           <table key={player.id} className="menu-item">
             <tr className="item-info">
               <th>Name</th>
-              <th>Highest Bid</th>
+              <th>Rating</th>
+              <th>Wage</th>
               <th>Base Price</th>
+              <th>Highest Bid</th>
             </tr>
             <tr>
               <td>{player.data.name}</td>
-              <td className="price">{player.data.maxbid}</td>
-
+              <td>{player.data.rating}</td>
+              <td>{player.data.wage}</td>
               <td className="item-text">{player.data.baseprice}</td>
+              <td className="price">{player.data.maxbid}</td>
             </tr>
           </table>
         );

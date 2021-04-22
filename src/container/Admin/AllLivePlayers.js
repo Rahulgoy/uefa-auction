@@ -18,7 +18,7 @@ const AllLivePlayers = ({ player }) => {
   });
   const assign = (e) => {
     e.preventDefault();
-    db.collection("refresh").doc("button").update({
+    db.collection("refresh").doc("live").update({
       value: "true",
     });
     db.collection("players").doc(player.data.name).update({
@@ -35,6 +35,8 @@ const AllLivePlayers = ({ player }) => {
           teamBalance:
             parseInt(snapshot.data().teamBalance) -
             parseInt(player.data.maxbid),
+          teamWage:
+            parseInt(snapshot.data().teamWage) - parseInt(player.data.wage),
         });
         //}
       });
@@ -97,7 +99,7 @@ const AllLivePlayers = ({ player }) => {
               <option value="B">B</option>
               <option value="C">C</option>
               <option value="D">D</option>
-              <option value="no">no</option>
+              <option value="E">E</option>
             </select>{" "}
           </td>
           <td>

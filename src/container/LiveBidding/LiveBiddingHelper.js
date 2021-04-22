@@ -64,9 +64,11 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
       });
     }
     //const ref2 = db.collection("players").doc(playerId);
-    if (parseInt(biddingValue) < 200 && parseInt(biddingValue) >= 20)
+    if (parseInt(biddingValue) < 100 && parseInt(biddingValue) >= 0)
+      setbiddingValue(parseInt(biddingValue) + 5);
+    else if (parseInt(biddingValue) < 200 && parseInt(biddingValue) >= 100) {
       setbiddingValue(parseInt(biddingValue) + 10);
-    else if (parseInt(biddingValue) < 500 && parseInt(biddingValue) >= 200) {
+    } else if (parseInt(biddingValue) < 500 && parseInt(biddingValue) >= 200) {
       setbiddingValue(parseInt(biddingValue) + 20);
     } else {
       setbiddingValue(parseInt(biddingValue) + 25);
@@ -94,13 +96,16 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
             player.maxbidBy !== ""
           ) {
             if (
-              parseInt(doc.data().maxbid) < 500 &&
-              parseInt(doc.data().maxbid) >= 200
+              parseInt(doc.data().maxbid) < 100 &&
+              parseInt(doc.data().maxbid) >= 0
+            )
+              setbiddingValue(parseInt(doc.data().maxbid) + 5);
+            else if (
+              parseInt(doc.data().maxbid) < 200 &&
+              parseInt(doc.data().maxbid) >= 100
             ) {
-              setbiddingValue(parseInt(doc.data().maxbid) + 20);
-            }
-          } else {
-            if (
+              setbiddingValue(parseInt(doc.data().maxbid) + 10);
+            } else if (
               parseInt(doc.data().maxbid) < 500 &&
               parseInt(doc.data().maxbid) >= 200
             ) {
@@ -111,21 +116,6 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
           }
         });
       });
-
-    /*  if (parseInt(player.baseprice) === parseInt(player.maxbid)) {
-      setbiddingValue(parseInt(player.baseprice));
-    } else {
-      if (parseInt(player.maxbid) < 200 && parseInt(player.maxbid) >= 20)
-        setbiddingValue(parseInt(player.maxbid) + 10);
-      else if (
-        parseInt(player.maxbid) < 500 &&
-        parseInt(player.maxbid) >= 200
-      ) {
-        setbiddingValue(parseInt(player.maxbid) + 20);
-      } else {
-        setbiddingValue(parseInt(player.maxbid) + 25);
-      }
-    }*/
   }, [player.maxbidBy]);
   useEffect(() => {
     db.collection("users")
@@ -209,22 +199,26 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                     <div>
                       <Typography className={classes.playerDetails}>
                         {" "}
-                        Runs: {player.Runs}
+                        National Team: {player.nationalTeam}
                       </Typography>
                       <Typography className={classes.playerDetails}>
                         {" "}
-                        Batting Average: {player.Batavg}
+                        Position: {player.position}
                       </Typography>
                       <Typography className={classes.playerDetails}>
                         {" "}
-                        Strike Rate: {player.strikerate}
+                        Rating: {player.rating}
+                      </Typography>
+                      <Typography className={classes.playerDetails}>
+                        {" "}
+                        Wage: {player.wage}
                       </Typography>
                     </div>
 
                     {/* </Grid> */}
                     {/* <Grid item xs={3}> */}
 
-                    <div>
+                    {/* <div>
                       <Typography className={classes.playerDetails}>
                         {" "}
                         Wickets: {player.wickets}
@@ -241,7 +235,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                         {" "}
                         Rating: {player.rating}
                       </Typography>
-                    </div>
+                    </div> */}
                   </div>
                   {/* </Grid> */}
                 </div>
@@ -250,7 +244,8 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                   <div className="bidButtonStyle">
                     <Typography color="primary" variant="h5">
                       {" "}
-                      Base Price: {player.baseprice} Lakhs{" "}
+                      Base Price:
+                      {player.baseprice} Million{" "}
                     </Typography>
                     {/* {player.maxbidBy === teamId ? <h3>WINNING</h3> : console.log("False")} */}
                     <form>
@@ -264,7 +259,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                               style={{ backgroundColor: "#3160fd" }}
                             >
                               <Typography variant="h6" color="primary">
-                                {biddingValue}L Bid{" "}
+                                {biddingValue}M Bid{" "}
                               </Typography>
                             </button>
                           ) : (
@@ -278,7 +273,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                                 variant="h6"
                                 style={{ color: "#fff" }}
                               >
-                                {biddingValue}L Bid{" "}
+                                {biddingValue}M Bid{" "}
                               </Typography>
                             </button>
                           ),
@@ -323,32 +318,3 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
 };
 
 export default LiveBiddingHelper;
-
-/*  useEffect(() => {
-    db.collection("players")
-      .where("category", "==", "live")
-      .where("status", "==", "close")
-      .onSnapshot((snapshot)=>{
-        if(snapshot.exists){
-          snapshot.doc.for
-        }
-      })
-
-
-
-    if (player.status === "close") {
-      db.collection("players").doc(player.name).update({
-        team: player.maxbidBy,
-      });
-      const ref3 = db.collection("users").doc(player.maxbidBy);
-
-      ref3.onSnapshot((snapshot) => {
-        if (snapshot.exists) {
-          ref3.update({
-            teamBalance:
-              parseInt(snapshot.data().teamBalance) - parseInt(player.maxbid),
-          });
-        }
-      });
-    }
-  }, [player.status]); */

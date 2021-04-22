@@ -42,8 +42,8 @@ class SignUp extends Component {
   render() {
     const { auth, authError } = this.props;
 
-    if (auth.uid !== "zZfVKoYwMWURII0q8tmvK6rvXvi1")
-      return <Redirect to="/dashboard" />;
+    // if (auth.uid !== "HwV4GQfs7kQk6NAGxeHwsInIMfs2")
+    // return <Redirect to="/dashboard" />;
     return (
       <div style={formAlignStyle}>
         <CssBaseline />

@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import SilentBiddingHelper from "./SilentBiddingHelper";
 import { Redirect } from "react-router";
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
 import BlurredImage from "../../assets/img/BlurredImage.png";
 
@@ -13,74 +13,58 @@ import {
   Box,
   Container,
   Table,
-  TableBody,  
+  TableBody,
   TableContainer,
   TableHead,
   TableRow,
   TableCell,
-  Typography
+  Typography,
 } from "@material-ui/core";
-
 
 const useStyles = makeStyles({
   root: {
-    
     // boxShadow: '0 3px 5px 2px white',
-    
-    padding: '0 30px',
+
+    padding: "0 30px",
   },
 
   container: {
-
-    padding: 10
+    padding: 10,
   },
 
   heading: {
     // page heading
-    padding: '25px 0 0 20px'
-
+    padding: "25px 0 0 20px",
   },
   table: {
-    background: 'linear-gradient(45deg, #647DEE 30%, #7F53AC 90%)',
-    color: 'white',
-    border: '2px solid white',
+    background: "linear-gradient(45deg, #647DEE 30%, #7F53AC 90%)",
+    color: "white",
+    border: "2px solid white",
     // borderRadius: '10px'
-    
-
   },
   row1: {
-    boxShadow:'none',
-
+    boxShadow: "none",
   },
-  
-  tableWrapper: {
-    
-  }
+
+  tableWrapper: {},
 });
-
-
 
 const SilentBidding = ({ auth, playerB }) => {
   const classes = useStyles();
 
   const [silentPlayers, setSilentPlayers] = useState([]);
   const [playerId, setplayerId] = useState("");
-
-  const fetchSilent = () => {
-    /* db.collection("players")
-      .where("category", "==", "silent")
-      .onSnapshot((snapshot) => {
-        snapshot.forEach((doc) => {
-          setplayerId(doc.id);
-
-          console.log(doc.id, "=>", doc.data());
-          setSilentPlayers((silentPlayers) => [
-            ...silentPlayers,
-            { id: doc.id, data: doc.data() },
-          ]);
+  db.collection("refresh")
+    .doc("silent")
+    .onSnapshot((snapshot) => {
+      if (snapshot.data().value === "true") {
+        db.collection("refresh").doc("silent").update({
+          value: "false",
         });
-      }); */
-
+        setTimeout("window.location.reload();", 4000);
+      }
+    });
+  const fetchSilent = () => {
     db.collection("players")
       .where("category", "==", "silent")
       .where("status", "==", "open")
@@ -112,61 +96,93 @@ const SilentBidding = ({ auth, playerB }) => {
   }, []);
   if (!auth.uid) return <Redirect to="/signin" />;
 
-  
-
   return (
-<>    
-  <div className={classes.root}>
-    <Typography variant='h2' className={classes.heading} color='primary' align='center'>
-      Silent Bidding
-    </Typography>
+    <>
+      <div className={classes.root}>
+        <Typography
+          variant="h2"
+          className={classes.heading}
+          color="primary"
+          align="center"
+        >
+          Silent Bidding
+        </Typography>
 
-    <Container>
-      <div className={classes.wrapper}>
-          {/* <img src={BlurredImage} style={{backgroundRepeat: 'cover'}}></img> */}
-        <div className={classes.tableWrapper}>
-      
-          <TableContainer className={classes.container}>
-            <Table className={classes.table} style={{borderRadius:'5px'}}>
-              {/* <Box borderRadius={10} border={1} borderColor='secondary'> */}
-              <TableHead stickyHeader>
-                <TableRow className={classes.row1}>
-                  <TableCell> <Typography color='primary'>Name</Typography> </TableCell>
-                  <TableCell> <Typography color='primary'>Rus</Typography>  </TableCell>
-                  <TableCell> <Typography color='primary'>Batting Avg </Typography> </TableCell>
-                  <TableCell> <Typography color='primary'>Strike Rate</Typography> </TableCell>
-                  <TableCell> <Typography color='primary'>Wickets</Typography> </TableCell>
-                  <TableCell> <Typography color='primary'>Bowling Avg</Typography> </TableCell>
-                  <TableCell> <Typography color='primary'>Economy</Typography> </TableCell>
-                  <TableCell> <Typography color='primary'>Rating</Typography> </TableCell>
-                  <TableCell> <Typography color='primary'>Baseprice</Typography> </TableCell>
-                  <TableCell> <Typography color='primary'>Max Bid</Typography> </TableCell>
-                  <TableCell> <Typography color='primary'>Place Bid</Typography> </TableCell>
-                </TableRow>
-              </TableHead>
+        <Container>
+          <div className={classes.wrapper}>
+            {/* <img src={BlurredImage} style={{backgroundRepeat: 'cover'}}></img> */}
+            <div className={classes.tableWrapper}>
+              <TableContainer className={classes.container}>
+                <Table
+                  className={classes.table}
+                  style={{ borderRadius: "5px" }}
+                >
+                  {/* <Box borderRadius={10} border={1} borderColor='secondary'> */}
+                  <TableHead stickyHeader>
+                    <TableRow className={classes.row1}>
+                      <TableCell>
+                        {" "}
+                        <Typography color="primary">Name</Typography>{" "}
+                      </TableCell>
+                      <TableCell>
+                        {" "}
+                        <Typography color="primary">Club</Typography>{" "}
+                      </TableCell>
+                      <TableCell>
+                        {" "}
+                        <Typography color="primary">
+                          National Team
+                        </Typography>{" "}
+                      </TableCell>
+                      <TableCell>
+                        {" "}
+                        <Typography color="primary">Position</Typography>{" "}
+                      </TableCell>
+                      <TableCell>
+                        {" "}
+                        <Typography color="primary">Rating</Typography>{" "}
+                      </TableCell>
+                      <TableCell>
+                        {" "}
+                        <Typography color="primary">Wage</Typography>{" "}
+                      </TableCell>
+                      <TableCell>
+                        {" "}
+                        <Typography color="primary">Baseprice</Typography>{" "}
+                      </TableCell>
+                      <TableCell>
+                        {" "}
+                        <Typography color="primary">Max Bid</Typography>{" "}
+                      </TableCell>
+                      <TableCell>
+                        {" "}
+                        <Typography color="primary">Place Bid</Typography>{" "}
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
 
-              <TableBody>
-                  {silentPlayers.map((player) => {
-                    return player ? (
-                      <SilentBiddingHelper
-                        key={player.id}
-                        player={player.data}
-                        playerId={playerId}
-                        teamId={auth.uid}
-                      />
-                    ) : (
-                      <h3>No Player to Bid</h3>
-                    );
-                  })}
-                </TableBody>
-              {/* </Box> */}
-            </Table>
-          </TableContainer>
-        </div>
+                  <TableBody>
+                    {silentPlayers.map((player) => {
+                      return player ? (
+                        <SilentBiddingHelper
+                          key={player.id}
+                          player={player.data}
+                          playerId={playerId}
+                          teamId={auth.uid}
+                        />
+                      ) : (
+                        <h3>No Player to Bid</h3>
+                      );
+                    })}
+                  </TableBody>
+                  {/* </Box> */}
+                </Table>
+              </TableContainer>
+            </div>
+          </div>
+        </Container>
       </div>
-    </Container>
-  </div>
-</>
+    </>
   );
 };
 

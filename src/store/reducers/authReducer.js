@@ -40,18 +40,6 @@ const authReducer = (state = initState, action) => {
         ...state,
         authError: "Adding Player failed",
       };
-    case "REFRESH_SUCCESS":
-      console.log("REFRESH SUCCESSFULL");
-      return {
-        ...state,
-        authError: null,
-      };
-    case "REFRESH_ERROR":
-      console.log("REFRESH ERROR");
-      return {
-        ...state,
-        authError: "REFRESH ERROR",
-      };
 
     case "SIGNUP_ERROR":
       console.log("signup error");

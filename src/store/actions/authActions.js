@@ -38,9 +38,9 @@ export const signUp = (newUser) => {
       .then((resp) => {
         return firestore.collection("users").doc(resp.user.uid).set({
           teamName: newUser.teamName,
-          teamBalance: 8000,
+          teamBalance: 2000,
+          teamWage: 150,
           initials: newUser.initials,
-          players: [],
         });
       })
       .then(() => {
@@ -63,13 +63,12 @@ export const AddPlayer = (player) => {
         name: player.name,
         age: player.age,
         baseprice: player.baseprice,
-        Batavg: player.Batavg,
+        wage: player.wage,
+        club: player.club,
         Image: player.Image,
-        Runs: player.Runs,
-        strikerate: player.strikerate,
-        Bowlavg: player.Bowlavg,
-        wickets: player.wickets,
-        economy: player.economy,
+        nationalTeam: player.nationalTeam,
+        position: player.position,
+        rating: player.rating,
         category: player.category,
         display: player.display,
         status: player.status,
@@ -83,19 +82,6 @@ export const AddPlayer = (player) => {
       })
       .catch((err) => {
         dispatch({ type: "ADD_PLAYER_ERROR", err });
-      });
-  };
-};
-
-export const refresh = () => {
-  return (dispatch, getState) => {
-    window.location
-      .reload()
-      .then(() => {
-        dispatch({ type: "REFRESH_SUCCESS" });
-      })
-      .catch((err) => {
-        dispatch({ type: "REFRESH_ERROR", err });
       });
   };
 };

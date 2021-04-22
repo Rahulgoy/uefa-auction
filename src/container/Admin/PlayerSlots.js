@@ -11,6 +11,9 @@ const PlayerSlots = ({ auth }) => {
   const changeslot = (e) => {
     e.preventDefault();
     setShowPlayers([]);
+    db.collection("refresh").doc("silent").update({
+      value: "true",
+    });
     db.collection("players")
       .where("category", "==", "silent")
       .where("class", "==", fetchClass)
@@ -36,6 +39,9 @@ const PlayerSlots = ({ auth }) => {
   const changeslot_assignteam = (e) => {
     e.preventDefault();
     setShowPlayers([]);
+    db.collection("refresh").doc("silent").update({
+      value: "true",
+    });
     db.collection("players")
       .where("category", "==", "silent")
       .where("class", "==", "show")
@@ -62,6 +68,9 @@ const PlayerSlots = ({ auth }) => {
                   teamBalance:
                     parseInt(snapshot.data().teamBalance) -
                     parseInt(doc.data().maxbid),
+                  teamWage:
+                    parseInt(snapshot.data().teamWage) -
+                    parseInt(doc.data().wage),
                 });
               }
             });
@@ -70,7 +79,7 @@ const PlayerSlots = ({ auth }) => {
         //}
       });
   };
-  if (auth.uid !== "zZfVKoYwMWURII0q8tmvK6rvXvi1")
+  if (auth.uid !== "HwV4GQfs7kQk6NAGxeHwsInIMfs2")
     return <Redirect to="/login" />;
 
   console.log(showPlayers);
