@@ -1,0 +1,21 @@
+.historyTable{
+    display: flex;
+    justify-content: space-between;
+}
+.biddingHistorySection{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+
+}
+
+.teamNameOnLeft{
+    
+}
+.bidOnRight{
+   color: goldenrod;
+  
+}
+
+
+
