@@ -58,45 +58,47 @@ const UserUpdate = ({ auth }) => {
     return <Redirect to="/dashboard" />;
 
   return (
-    <Container>
-      <h3>Live</h3>
+    <div style={{ backgroundColor: "white", height: "100vh" }}>
+      <Container>
+        <h3>Live</h3>
 
-      <div className="tableWrapper">
-        <div className="black">
-          {/* <img src={BlurredImage} style={{backgroundRepeat: 'cover'}}></img> */}
-          <div className="backText">
-            <TableContainer>
-              <Table className="table" aria-label="customized table">
-                <TableHead stickyHeader>
-                  <TableRow>
-                    <StyledTableCell>Team Name</StyledTableCell>
-                    <StyledTableCell>Team Id</StyledTableCell>
-                    <StyledTableCell>Balance</StyledTableCell>
-                    <StyledTableCell>Update Balance</StyledTableCell>
-                    <StyledTableCell>Wage</StyledTableCell>
-                    <StyledTableCell>Update Wage</StyledTableCell>
-                  </TableRow>
-                </TableHead>
+        <div className="tableWrapper">
+          <div className="black">
+            {/* <img src={BlurredImage} style={{backgroundRepeat: 'cover'}}></img> */}
+            <div className="backText">
+              <TableContainer>
+                <Table className="table" aria-label="customized table">
+                  <TableHead stickyHeader>
+                    <TableRow>
+                      <StyledTableCell>Team Name</StyledTableCell>
+                      <StyledTableCell>Team Id</StyledTableCell>
+                      <StyledTableCell>Wage</StyledTableCell>
+                      <StyledTableCell>Update Wage</StyledTableCell>
+                      <StyledTableCell>Balance</StyledTableCell>
+                      <StyledTableCell>Update Balance</StyledTableCell>
+                    </TableRow>
+                  </TableHead>
 
-                <TableBody>
-                  {teams.map((team) => {
-                    return team ? (
-                      <AllTeams
-                        key={team.id}
-                        team={team}
-                        //playerId={playerId}
-                      />
-                    ) : (
-                      <h1>No team Fetched</h1>
-                    );
-                  })}
-                </TableBody>
-              </Table>
-            </TableContainer>
+                  <TableBody>
+                    {teams.map((team) => {
+                      return team ? (
+                        <AllTeams
+                          key={team.id}
+                          team={team}
+                          //playerId={playerId}
+                        />
+                      ) : (
+                        <h1>No team Fetched</h1>
+                      );
+                    })}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </div>
           </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </div>
   );
 };
 

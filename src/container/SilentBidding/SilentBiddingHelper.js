@@ -39,8 +39,8 @@ const SilentBiddingHelper = ({ player, playerId, teamId, auth }) => {
           },
         ],
       });
-    console.log("Maxbid:", player.maxbid);
-    console.log("Price:", biddingValue);
+    // console.log("Maxbid:", player.maxbid);
+    // console.log("Price:", biddingValue);
     if (parseInt(player.maxbid) < parseInt(biddingValue)) {
       db.collection("players").doc(player.name).update({
         maxbid: biddingValue,
@@ -71,7 +71,7 @@ const SilentBiddingHelper = ({ player, playerId, teamId, auth }) => {
     <>
       <StyledTableRow>
         <StyledTableCell>{player.name}</StyledTableCell>
-        <StyledTableCell>{player.clubs}</StyledTableCell>
+        <StyledTableCell>{player.club}</StyledTableCell>
         <StyledTableCell>{player.nationalTeam}</StyledTableCell>
         <StyledTableCell>{player.position}</StyledTableCell>
         <StyledTableCell>{player.rating}</StyledTableCell>
@@ -122,54 +122,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-/* const mapDispatchToProps = (dispatch) => {
-  return {
-    Bids: (playerId, biddingprice) => dispatch(Bids(playerId, biddingprice)),
-  };
-}; */
 export default connect(mapStateToProps)(SilentBiddingHelper);
-
-/// Assign Players
-/* useEffect(() => {
-    db.collection("players")
-      .where("category", "==", "silent")
-      .where("status", "==", "close")
-      .onSnapshot((snapshot) => {
-        if (snapshot.exists) {
-          snapshot.docs.map((doc) => {
-            console.log(doc.data().name);
-            console.log(doc.data().maxbidBy);
-            db.collection("players").doc(doc.data().name).update({
-              team: doc.data().maxbidBy,
-            });
-            const ref3 = db.collection("users").doc(doc.data().maxbidBy);
-
-            ref3.onSnapshot((snapshot) => {
-              if (snapshot.exists) {
-                console.log(snapshot.data().teamBalance);
-                ref3.update({
-                  teamBalance:
-                    parseInt(snapshot.data().teamBalance) -
-                    parseInt(doc.data().maxbid),
-                });
-              }
-            });
-          });
-        }
-      });
-  }, [player.status]); */
-/* if (player.status === "close") {
-      db.collection("players").doc(player.name).update({
-        team: player.maxbidBy,
-      });
-      const ref3 = db.collection("users").doc(player.maxbidBy);
-
-      ref3.onSnapshot((snapshot) => {
-        if (snapshot.exists) {
-          ref3.update({
-            teamBalance:
-              parseInt(snapshot.data().teamBalance) - parseInt(player.maxbid),
-          });
-        }
-      });
-    } */

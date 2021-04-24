@@ -75,7 +75,7 @@ const UpdatePlayer = ({ auth }) => {
       });
   }; */
 
-  console.log(silentPlayers);
+  //console.log(silentPlayers);
   /* let arr = Object.entries(silentPlayers);
   console.log("Arr:", arr); */
   useEffect(() => {
@@ -87,9 +87,9 @@ const UpdatePlayer = ({ auth }) => {
     return <Redirect to="/dashboard" />;
 
   return (
-    <MuiThemeProvider theme={adminTheme}>
+    <div style={{ backgroundColor: "white", height: "100vh" }}>
       <Container>
-        <Typography variant="h1">Live</Typography>
+        <h3>Live</h3>
 
         <div className="tableWrapper">
           <div className="black">
@@ -167,7 +167,7 @@ const UpdatePlayer = ({ auth }) => {
           </div>
         </div> */}
       </Container>
-    </MuiThemeProvider>
+    </div>
   );
 };
 

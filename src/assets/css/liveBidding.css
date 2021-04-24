@@ -2,7 +2,8 @@
 .leftGridStyle{
     position: relative;
     border-radius: 30px;
-    height: 75vh;
+    /* width: 505; */
+    /* height: 75vh; */
 }
 
 .leftGridBack::before{
@@ -13,12 +14,13 @@
     background-size: cover;
     border-radius: 30px;
     width: 100%;
-    /* height: 100%; */
+    height: 100%;
     z-index: -1;
     filter: blur(5px);
     box-shadow: none;
-    height: 75vh;
+    /* height: 75vh; */
 }
+
 
 .leftGridTop{
     z-index: 10;
@@ -27,9 +29,25 @@
     /* box-shadow: 10px 10px 30px #444444, 
                 -3px -3px 30px #444444;    */
     border: 1px solid #858585;
-    height: 75vh;
+    height: inherit;
+    padding: 1.2rem 0.8rem 0.4rem 0.8rem;
+}
+.playername{
+    padding: 10px 20px;
+}
+.playerDetails{
+    color: #fff;
+}
+.playerCard{
+    /* height="350px" width="250px" */
+    height: 350px;
+    width: 250px
 }
 
+.bidSection{
+    margin-top: 40px;
+
+}
 
 .bidButtonStyle{
     display: flex;
@@ -42,7 +60,7 @@
     margin: 20px;
     position: relative;
     border-radius: 30px;
-    height: 75vh;
+    /* height: 75vh; */
     width: 90%;
 }
 
@@ -66,4 +84,22 @@
     z-index: 10;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.405);
+}
+
+
+@media screen and (max-width: 1200px) {
+    .leftGridTop{
+        padding: 0.8rem 0.8rem 0.4rem 0.8rem;
+    }
+
+    .playerDetails{
+        font-size: 0.8rem;
+    }
+    .playerCard{
+        height: 300px;
+        width: 210px;
+    }
+    .bidSection{
+        
+    }
 }

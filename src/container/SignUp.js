@@ -42,8 +42,8 @@ class SignUp extends Component {
   render() {
     const { auth, authError } = this.props;
 
-    // if (auth.uid !== "HwV4GQfs7kQk6NAGxeHwsInIMfs2")
-    // return <Redirect to="/dashboard" />;
+    // if (auth.uid !== "zZfVKoYwMWURII0q8tmvK6rvXvi1")
+    //   return <Redirect to="/dashboard" />;
     return (
       <div style={formAlignStyle}>
         <CssBaseline />
@@ -62,8 +62,7 @@ class SignUp extends Component {
             transform: "translateX(-50%)",
             left: "50%",
             top: "10%",
-            backgroundColor: "white",
-            background: "rgba(255,255,255)",
+            backgroundColor: "#fff",
             borderRadius: "10px",
             padding: "20px",
           }}
@@ -80,11 +79,12 @@ class SignUp extends Component {
           <Typography component="h1" variant="h4" style={{ fontWeight: "600" }}>
             Sign Up
           </Typography>
-          <Grid item xs={10} md={6} lg={12}>
+          <Grid item xs={10}>
             <Box>
               <form onSubmit={this.handleSubmit}>
                 {/* email */}
                 <TextField
+                  style={{ background: "#F19D56" }}
                   variant="outlined"
                   margin="normal"
                   label="Email Address"
@@ -100,6 +100,7 @@ class SignUp extends Component {
 
                 {/* password */}
                 <TextField
+                  style={{ background: "#F19D56" }}
                   variant="outlined"
                   margin="normal"
                   name="password"
@@ -114,6 +115,7 @@ class SignUp extends Component {
 
                 {/* First Name */}
                 <TextField
+                  style={{ background: "#F19D56" }}
                   variant="outlined"
                   margin="normal"
                   name="teamName"
@@ -125,6 +127,7 @@ class SignUp extends Component {
                   onChange={this.handleChange}
                 />
                 <TextField
+                  style={{ background: "#F19D56" }}
                   variant="outlined"
                   margin="normal"
                   name="initials"
@@ -138,10 +141,10 @@ class SignUp extends Component {
                 <Button
                   type="submit"
                   variant="contained"
-                  color="primary"
                   fullWidth
                   style={{
                     margin: "24px 0px 16px",
+                    background: "#f48fb1",
                   }}
                 >
                   Sign Up

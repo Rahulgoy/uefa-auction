@@ -32,7 +32,7 @@ const Navbar = (props) => {
 
   const SignedInLinks = (
     <ul className="navMenu">
-      {auth.uid === "HwV4GQfs7kQk6NAGxeHwsInIMfs2" ? (
+      {auth.uid === "zZfVKoYwMWURII0q8tmvK6rvXvi1" ? (
         <li className="li">
           {" "}
           <NavLink to="/admin" className={classes.linkUnderline}>
@@ -45,20 +45,20 @@ const Navbar = (props) => {
 
       <li className="li">
         {" "}
-        <a href="http://www.econtiet.team/" className={classes.linkUnderline}>
+        <a href="https://econtiet.team" className={classes.linkUnderline}>
           <a className="hover-line">Home</a>
         </a>{" "}
       </li>
       <li className="li">
         {" "}
         <NavLink to="/live" className={classes.linkUnderline}>
-          <a className="hover-line">Live Bidding</a>
+          <a className="hover-line">Live Auction</a>
         </NavLink>{" "}
       </li>
       <li className="li">
         {" "}
         <NavLink to="/silent" className={classes.linkUnderline}>
-          <a className="hover-line">Silent Bidding</a>
+          <a className="hover-line">Closed Auction</a>
         </NavLink>{" "}
       </li>
       <li className="li">
@@ -88,7 +88,7 @@ const Navbar = (props) => {
       </li> */}
       <li className="li">
         {" "}
-        <a href="http://www.econtiet.team/" className={classes.linkUnderline}>
+        <a href="https://econtiet.team" className={classes.linkUnderline}>
           <a className="hover-line">Home</a>
         </a>{" "}
       </li>

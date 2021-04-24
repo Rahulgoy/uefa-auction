@@ -27,33 +27,32 @@ li {
 }
 
 .li a {
-  display: block;
-  padding: 8px;
+  display: flex;
   color: #d7d7d9;
   text-align: center;
-  padding: 14px 16px;
+  padding: 0.8rem 0.8rem;
   text-decoration: none;
-  font-size: 100%;
   font-weight: 600;
-  font-style: normal;
-  letter-spacing: 0.1rem;
-  word-spacing: 0;
+  /* font-style: normal; */
+  font-size: 16px;
   text-transform: uppercase;
 }
 
 .alllinks {
   margin: 0 auto;
 }
-.nav .ipl {
+.nav .iplLogo {
   position: absolute;
-  top: 0px;
-  right: 50px;
+  top: 10px;
+  right: 10px;
+  height: 80px;
 }
 
 .nav .econ {
   position: absolute;
   top: 16.5px;
   left: 10px;
+  height: 50px;
 }
 
 .econ {
@@ -61,7 +60,7 @@ li {
   outline: black;
 }
 
-a:after {
+.hover-line:after {
   background: none repeat scroll 0 0 transparent;
   bottom: 13px;
   content: "";
@@ -74,22 +73,42 @@ a:after {
   width: 0;
 }
 
-.navMenu li a:hover {
-  color: #d7a864;
-  transition: 0.3s;
-}
-
 a:hover:after {
   width: 100%;
   left: 0;
 }
 
-@media screen and (max-height: 300px) {
-  ul {
-    margin-top: 40px;
-  }
-}
+@media screen and (max-width: 786px) {
 
+  
+  .nav{
+    display: grid;
+    grid-column: auto;
+  }
+  .li a{
+    font-size: 14px;
+    padding: 0.4rem;
+  }
+  .nav .iplLogo{
+    display: none;
+  }
+  .nav .econ{
+    display: none;
+  }
+    
+}
+@media screen and (max-width: 600px) {
+
+  .nav{
+    display: grid;
+    grid-column: auto;
+  }
+  .li a{
+    font-size: 10px;
+    padding: 0.4rem;
+  }
+    
+}
 /* 
 
     /* .navMenu  { 

@@ -1,10 +1,5 @@
-import {
-  Button,
-  TableCell,
-  TableRow,
-  TextField,
-  withStyles,
-} from "@material-ui/core";
+import { Button, Container } from "@material-ui/core";
+import { TableCell, TableRow, withStyles } from "@material-ui/core";
 import React, { useState } from "react";
 import { db } from "../../config/Firebase";
 const StyledTableCell = withStyles((theme) => ({
@@ -29,14 +24,25 @@ const StyledTableRow = withStyles((theme) => ({
 
 const AllTeams = ({ team }) => {
   const [balance, setBalance] = useState(0);
-  const [wage, setWage] = useState(0);
+  const [Wage, setWage] = useState(0);
+  const sendWage = (e) => {
+    e.preventDefault();
+    db.collection("users")
+      .doc(team.id)
+      .update({
+        teamWage: Wage,
+      })
+      .then(console.log("Done"))
+      .catch((err) => {
+        console.log("Error", err);
+      });
+  };
   const sendBalance = (e) => {
     e.preventDefault();
     db.collection("users")
       .doc(team.id)
       .update({
         teamBalance: balance,
-        teamWage: wage,
       })
       .then(console.log("Done"))
       .catch((err) => {
@@ -46,39 +52,59 @@ const AllTeams = ({ team }) => {
   console.log(balance);
   return (
     <div>
-      <StyledTableRow>
-        <StyledTableCell>{team.data.teamName}</StyledTableCell>
-        <StyledTableCell>{team.id}</StyledTableCell>
-        <StyledTableCell>{team.data.teamBalance}</StyledTableCell>
-
-        <form onSubmit={sendBalance}>
-          <StyledTableCell>
-            <TextField
-              type="number"
-              onChange={(event) => {
-                event.preventDefault();
-                setBalance(event.target.value);
-              }}
-            />
-            <Button variant="contained" color="secondary" type="submit">
-              Update
-            </Button>
-          </StyledTableCell>
+      <Container>
+        <TableRow style={{ background: "#F19D56" }}>
+          <StyledTableCell>{team.data.teamName}</StyledTableCell>
+          <StyledTableCell>{team.id}</StyledTableCell>
           <StyledTableCell>{team.data.teamWage}</StyledTableCell>
           <StyledTableCell>
-            <TextField
-              type="number"
-              onChange={(event) => {
-                event.preventDefault();
-                setWage(event.target.value);
-              }}
-            />
-            <Button variant="contained" color="secondary" type="submit">
-              Update
-            </Button>
+            <form onSubmit={sendWage}>
+              <input
+                type="number"
+                onChange={(event) => {
+                  event.preventDefault();
+                  setWage(event.target.value);
+                }}
+              />
+              <Button
+                variant="contained"
+                color="secondary"
+                size="small"
+                style={{
+                  border: "1px solid black",
+                }}
+                type="submit"
+              >
+                Update
+              </Button>
+            </form>
           </StyledTableCell>
-        </form>
-      </StyledTableRow>
+          <StyledTableCell>{team.data.teamBalance}</StyledTableCell>
+
+          <StyledTableCell>
+            <form onSubmit={sendBalance}>
+              <input
+                type="number"
+                onChange={(event) => {
+                  event.preventDefault();
+                  setBalance(event.target.value);
+                }}
+              />
+              <Button
+                variant="contained"
+                color="secondary"
+                size="small"
+                style={{
+                  border: "1px solid black",
+                }}
+                type="submit"
+              >
+                Update
+              </Button>
+            </form>
+          </StyledTableCell>
+        </TableRow>
+      </Container>
     </div>
   );
 };

@@ -3,10 +3,43 @@ import { db } from "../../config/Firebase";
 import Categories from "./Categories";
 import Players from "./Players";
 
+import {
+  Box,
+  Container,
+  Grid,
+  Table,
+  TableBody,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TableCell,
+  Typography,
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
 ///
-import "../../assets/css/dashboard.css";
+// import "../../assets/css/dashboard.css";
+
+const useStyles = makeStyles((theme) => ({
+  // root: {
+  //   flexGrow: 1,
+  // },
+  // paper: {
+  //   padding: theme.spacing(2),
+  //   textAlign: "center",
+  //   color: theme.palette.primary,
+  //   background: '#555555'
+  // },
+  playerSectionWrapper: {
+    [theme.breakpoints.down("md")]: {
+      padding: 0,
+    },
+  },
+}));
 
 const PlayerSection = ({ teamId }) => {
+  const classes = useStyles();
+
   const [categories, setCategories] = useState([]);
   // let categories = [];
   const [team, setTeam] = useState([]);
@@ -30,13 +63,13 @@ const PlayerSection = ({ teamId }) => {
       .then((snapshot) => {
         snapshot.docs.map((doc) => {
           if (categories === null) {
-            setCategories({ id: doc.id, data: doc.data().teamName });
+            setCategories({ id: doc.id, data: doc.data().initials });
           } else {
             setCategories((categories) => [
               ...categories,
               {
                 id: doc.id,
-                data: doc.data().teamName,
+                data: doc.data().initials,
               },
             ]);
           }
@@ -84,18 +117,34 @@ const PlayerSection = ({ teamId }) => {
 
   console.log(filteredPlayers);
   return (
-    <div>
-      {categories === null ? (
-        console.log("No category")
-      ) : (
-        <Categories filterPlayers={filterPlayers} categories={categories} />
-      )}
-      <Players
-        players={
-          filteredPlayers ? filteredPlayers : console.log("No player Available")
-        }
-      />
-    </div>
+    <Grid className={classes.playerSectionWrapper}>
+      <Grid item xs={12}>
+        <div
+          classes={classes.containerButton}
+          style={{ display: "flex", justifyContent: "space-between" }}
+        >
+          {categories === null ? (
+            console.log("No category")
+          ) : (
+            <Categories
+              filterPlayers={filterPlayers}
+              className="teamDisplayButton"
+              categories={categories}
+            />
+          )}
+        </div>
+      </Grid>
+
+      <Grid item xs={12}>
+        <Players
+          players={
+            filteredPlayers
+              ? filteredPlayers
+              : console.log("No player Available")
+          }
+        />
+      </Grid>
+    </Grid>
   );
 };
 

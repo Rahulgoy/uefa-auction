@@ -4,6 +4,11 @@ import AllSilentPlayers from "./AllSilentPlayers";
 import PlayerSlotsHelper from "./PlayerSlotsHelper";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
+import { Button, Table, Typography } from "@material-ui/core";
+import { Container } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
+import { TableRow, TableCell } from "@material-ui/core";
+
 const PlayerSlots = ({ auth }) => {
   const [showPlayers, setShowPlayers] = useState([]);
   const [fetchClass, setFetchClass] = useState("show");
@@ -86,52 +91,67 @@ const PlayerSlots = ({ auth }) => {
   /* console.log(fetchClass);
   console.log(classAndAssign); */
   return (
-    <div>
-      <form>
-        <div>
-          <h3>A to Show</h3>
-          <input
-            type="text"
-            onChange={(e) => {
-              e.preventDefault();
-              setFetchClass(e.target.value);
-            }}
-          />
-          <button onClick={changeslot}>Change Slot to show</button>
-        </div>
-        <div>
-          <h3>Show to A but enter A</h3>
-          <input
-            type="text"
-            onChange={(e) => {
-              e.preventDefault();
-              setclassAndAssign(e.target.value);
-            }}
-          />
-          <button onClick={changeslot_assignteam}>
-            Change Slot and Assign Team
-          </button>
-        </div>
-      </form>
-      <table>
-        <tr>
-          <th>name</th>
-          <th>category</th>
-          <th>status</th>
-          <th>display</th>
-          <th>class</th>
-          <th>maxbid</th>
-          <th>maxbidBy</th>
-          <th>team</th>
-        </tr>
-      </table>
-      {showPlayers.map((player) => {
-        return player ? (
-          <PlayerSlotsHelper key={player.id} player={player} />
-        ) : (
-          <h2>"No Silent player with class Given"</h2>
-        );
-      })}
+    <div style={{ background: "white", height: "100vh" }}>
+      <Container>
+        <form>
+          <div>
+            <Typography variant="h4">A to Show</Typography>
+            <TextField
+              type="text"
+              onChange={(e) => {
+                e.preventDefault();
+                setFetchClass(e.target.value);
+              }}
+            />
+            <Button style={{ backgroundColor: "tomato" }} onClick={changeslot}>
+              Change Slot to show
+            </Button>
+          </div>
+          <div>
+            <Typography variant="h4">Show to A but enter A</Typography>
+            <TextField
+              type="text"
+              onChange={(e) => {
+                e.preventDefault();
+                setclassAndAssign(e.target.value);
+              }}
+            />
+            <Button
+              onClick={changeslot_assignteam}
+              style={{ backgroundColor: "tomato" }}
+            >
+              Change Slot and Assign Team
+            </Button>
+          </div>
+        </form>
+        <Table
+          style={{
+            marginTop: "30px",
+            color: "#000",
+            textTransform: "uppercase",
+          }}
+        >
+          <TableRow style={{ background: "#33D0FF" }}>
+            <TableCell>name</TableCell>
+            <TableCell>category</TableCell>
+            <TableCell>status</TableCell>
+            <TableCell>display</TableCell>
+            <TableCell>class</TableCell>
+            <TableCell>maxbid</TableCell>
+            <TableCell>maxbidBy</TableCell>
+            <TableCell>team</TableCell>
+          </TableRow>
+        </Table>
+        {showPlayers.map((player) => {
+          return player ? (
+            <PlayerSlotsHelper key={player.id} player={player} />
+          ) : (
+            <Typography variant="h2">
+              "No Silent player with class Given"
+            </Typography>
+          );
+        })}
+      </Container>
     </div>
   );
 };

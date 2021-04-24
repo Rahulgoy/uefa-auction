@@ -10,29 +10,33 @@ import { makeStyles } from "@material-ui/core";
 import theme from "../../assets/js/DarkTheme";
 import "../../assets/css/liveBidding.css";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   leftGrid: {
     padding: "20px",
   },
   playerDetailsWrapper: {},
   playerDetails: {
-    color: "#1B2C89", // blue
-    color: "#D7A864", // golden
-    color: "#fff", // golden
-    fontWeight: "700",
-    marginBottom: "10px",
-    fontSize: "1.5em",
+    // color: "#1B2C89", // blue
+    // color: "#D7A864", // golden
+    // color: "#fff", // golden
+    // fontWeight: "700",
+    // marginBottom: "10px",
+    // marginLeft: '2rem',
+    // fontSize: "1.5em",
   },
-  bidSection: {
-    marginTop: "40px",
-  },
+  // bidSection: {
+  //   marginTop: "40px",
+  //   [theme.breakpoints.down('md')]: {
+  //     marginBottom: '50px'
+  //   }
+  // },
   bidButton: {
     border: "2px solid black",
     padding: "5px 20px",
     borderRadius: "5px",
     margin: "10px 0 30px 0",
   },
-});
+}));
 
 const LiveBiddingHelper = ({ player, playerId, teamId }) => {
   const classes = useStyles();
@@ -49,7 +53,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
     db.collection("players").doc(playerId).collection("Bids").add({
       teamId: teamId,
       biddingprice: biddingValue,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      timestamp: firebase.firestore.Timestamp.now(),
     });
 
     //console.log("Maxbid:", player.maxbid);
@@ -152,7 +156,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
   //useEffect(() => {}, [Status]);
 
   return (
-    <Container style={{ marginTop: "50px" }}>
+    <Container style={{ marginTop: "50px", width: "100%" }}>
       <Grid container justify="center" spacing={3}>
         <Grid item xs={11} sm={10} md={6} lg={6} display="inline">
           <div className={classes.leftGrid}>
@@ -184,9 +188,8 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                 >
                   <img
                     src={player.Image}
+                    className="playerCard"
                     alt="No Image"
-                    height="350px"
-                    width="250px"
                     style={{
                       // margin: '0 auto'
                       // marginLeft: '-10%',
@@ -195,23 +198,32 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                   ></img>
 
                   <div
-                    style={{
-                      display: "block",
-                      justifyContent: "space-around",
-                    }}
+                    style={{ display: "block", justifyContent: "space-around" }}
                     className={classes.playerDetailsWrapper}
                   >
                     {/* <Grid item xs={3}> */}
                     <div>
-                      <Typography className={classes.playerDetails}>
+                      <Typography
+                        className="playerDetails"
+                        variant="h6"
+                        style={{ fontWeight: "600" }}
+                      >
                         {" "}
                         National Team: {player.nationalTeam}
                       </Typography>
-                      <Typography className={classes.playerDetails}>
+                      <Typography
+                        className="playerDetails"
+                        variant="h6"
+                        style={{ fontWeight: "600" }}
+                      >
                         {" "}
                         Club: {player.club}
                       </Typography>
-                      <Typography className={classes.playerDetails}>
+                      <Typography
+                        className="playerDetails"
+                        variant="h6"
+                        style={{ fontWeight: "600" }}
+                      >
                         {" "}
                         Position: {player.position}
                       </Typography>
@@ -221,11 +233,19 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                     {/* <Grid item xs={3}> */}
 
                     <div>
-                      <Typography className={classes.playerDetails}>
+                      <Typography
+                        className="playerDetails"
+                        variant="h6"
+                        style={{ fontWeight: "600" }}
+                      >
                         {" "}
                         Rating: {player.rating}
                       </Typography>
-                      <Typography className={classes.playerDetails}>
+                      <Typography
+                        className="playerDetails"
+                        variant="h6"
+                        style={{ fontWeight: "600" }}
+                      >
                         {" "}
                         Wage: {player.wage}
                       </Typography>
@@ -234,12 +254,15 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                   {/* </Grid> */}
                 </div>
 
-                <div className={classes.bidSection}>
+                <div className="bidSection">
                   <div className="bidButtonStyle">
-                    <Typography color="primary" variant="h5">
+                    <Typography
+                      color="primary"
+                      variant="h4"
+                      style={{ fontWeight: "600" }}
+                    >
                       {" "}
-                      Base Price:
-                      {player.baseprice} Million{" "}
+                      Base Price: {player.baseprice} M{" "}
                     </Typography>
                     {/* {player.maxbidBy === teamId ? <h3>WINNING</h3> : console.log("False")} */}
                     <form>
@@ -273,8 +296,13 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                           ),
                         ]
                       ) : (
-                        <button disabled>
-                          <p>Not Enough Balance</p>
+                        <button
+                          type="submit"
+                          disabled
+                          className={classes.bidButton}
+                          style={{ backgroundColor: "#0255c25b" }}
+                        >
+                          Not Enough Balance
                         </button>
                       )}
                     </form>
@@ -291,15 +319,29 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
             <div className="rightGridTop">
               <Container
                 className={classes.rightGrid}
-                style={{ marginTop: "30px", padding: "30px 0 50px 50px" }}
+                style={{ marginTop: "10px", padding: "30px 0 50px 30px" }}
               >
+                <Typography
+                  variant="h3"
+                  color="primary"
+                  style={{
+                    fontWeight: "bold",
+                    fontSize: "3em",
+                    textTransform: "uppercase",
+                    // marginTop: "10px",
+                  }}
+                >
+                  Bidding History
+                </Typography>
                 <FlipMove>
                   {bidDisplay ? (
                     bidDisplay.map((bid) => {
                       return <BiddingHistory key={bid.id} bid={bid.data} />;
                     })
                   ) : (
-                    <h1>No bids</h1>
+                    <Typography variant="h3" color="primary">
+                      No Bids
+                    </Typography>
                   )}
                 </FlipMove>
               </Container>

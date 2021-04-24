@@ -12,25 +12,28 @@ import PlayerSection from "./Dashboards/PlayerSection";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+import "../assets/css/dashboard.css";
+const theme = createMuiTheme({
+  palette: {
+    text: {
+      primary: "#000000",
+    },
+  },
+});
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    marginTop: "30px",
+    padding: "1.2rem",
   },
   paper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
     textAlign: "center",
-    color: theme.palette.text.secondary,
+    color: theme.palette.primary,
+    background: "#555555",
   },
 }));
-
-const theme = createMuiTheme({
-  palette: {
-    text: {
-      primary: "#FFFFFF",
-    },
-  },
-});
 
 const Dashboard = ({ auth }) => {
   const [team, setTeam] = useState(null);

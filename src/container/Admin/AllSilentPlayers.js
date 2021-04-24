@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { db } from "../../config/Firebase";
+import { Button, TableCell, Typography } from "@material-ui/core";
 
 const AllSilentPlayers = ({ player }) => {
   const [updatePlayer, setUpdatePlayer] = useState({
@@ -43,12 +44,12 @@ const AllSilentPlayers = ({ player }) => {
     e.preventDefault();
     db.collection("players").doc(player.data.name).update(updatePlayer);
   };
-  console.log(updatePlayer);
+  //console.log(updatePlayer);
   return (
-    <div>
+    <div style={{ backgroundColor: "#F7C486" }}>
       <form onSubmit={handlesubmit}>
-        <td>{player.data.name}</td>
-        <td>
+        <TableCell>{player.data.name}</TableCell>
+        <TableCell>
           <select
             name="category"
             onChange={handleChange}
@@ -57,8 +58,8 @@ const AllSilentPlayers = ({ player }) => {
             <option value="live">live</option>
             <option value="silent">silent</option>
           </select>{" "}
-        </td>
-        <td>
+        </TableCell>
+        <TableCell>
           <select
             name="display"
             onChange={handleChange}
@@ -67,8 +68,8 @@ const AllSilentPlayers = ({ player }) => {
             <option value="true">true</option>
             <option value="false">false</option>
           </select>{" "}
-        </td>
-        <td>
+        </TableCell>
+        <TableCell>
           <select
             name="status"
             onChange={handleChange}
@@ -77,8 +78,8 @@ const AllSilentPlayers = ({ player }) => {
             <option value="open">open</option>
             <option value="close">close</option>
           </select>{" "}
-        </td>
-        <td>
+        </TableCell>
+        <TableCell>
           <select
             name="class"
             onChange={handleChange}
@@ -88,34 +89,39 @@ const AllSilentPlayers = ({ player }) => {
             <option value="B">B</option>
             <option value="C">C</option>
             <option value="D">D</option>
-            <option value="E">E</option>
+            <option value="show">show</option>
           </select>{" "}
-        </td>
-        <td>
+        </TableCell>
+        <TableCell>
           <input
             name="maxbid"
             onChange={handleChange}
             type="number"
             defaultValue={player.data.maxbid}
           />
-        </td>
-        <td>
+        </TableCell>
+        <TableCell>
           <input
             name="maxbidBy"
             type="text"
             defaultValue={player.data.maxbidBy}
             onChange={handleChange}
           />
-        </td>
-        <td>
+        </TableCell>
+        <TableCell>
           <input
             name="team"
             type="text"
             defaultValue={player.data.team}
             onChange={handleChange}
           />
-        </td>
-        <button type="submit">Update</button>
+        </TableCell>
+        <Button
+          type="submit"
+          style={{ border: "1px solid black", background: "gray" }}
+        >
+          Update
+        </Button>
         {/* button onClick={assign}>Assign Team</button> */}
       </form>
     </div>
