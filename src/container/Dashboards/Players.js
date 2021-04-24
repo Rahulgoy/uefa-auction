@@ -82,7 +82,7 @@ const Players = ({ players, teamId, auth }) => {
 
                 <TableCell>
                   {" "}
-                  <Typography color="primary">Base Price </Typography>{" "}
+                  <Typography color="primary">Base Price</Typography> {" "}
                 </TableCell>
               </TableRow>
             </TableHead>

@@ -82,8 +82,10 @@ const Dashboard = ({ auth }) => {
     }}>
         Dashboard
     </Typography>
-    
+
       <Grid container spacing={2}>
+
+        
         <Grid item xs={3}>
           <Paper className={classes.paper}>
             {team === null ? console.log("No team") : <General player={team} />}

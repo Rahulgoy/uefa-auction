@@ -111,15 +111,16 @@ const Navbar = (props) => {
             className="econ"
             src="https://firebasestorage.googleapis.com/v0/b/ipl-auction-7dbdb.appspot.com/o/logos%2FEconwhite.png?alt=media&token=5c3f837f-8909-4b9d-9c20-7bb53e3718dc"
             alt="ECON"
-            width="6%"
+            width="8%"
           />
           <div className="alllinks"> {links} </div>
           <img
             className="iplLogo"
-            src="https://firebasestorage.googleapis.com/v0/b/ipl-auction-7dbdb.appspot.com/o/logos%2Fiplfinal.png?alt=media&token=30c5ac1b-4304-48c0-b53b-8c0ac06e9d81"
+            src="https://firebasestorage.googleapis.com/v0/b/uefa-auction.appspot.com/o/uefaLogo2.png?alt=media&token=80af6f71-8f89-4666-867d-f8751c7189ed"
             alt="IPL"
             width="6%"
             height="12%"
+            style={{color: 'white'}}
           />
         </div>
       </AppBar>
