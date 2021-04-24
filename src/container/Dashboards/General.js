@@ -23,6 +23,20 @@ const useStyles = makeStyles((theme) => ({
       padding: 10,
     },
   },
+  team: {
+    fontSize: "2.5rem",
+    color: "goldenrod",
+    textTransform: "uppercase",
+    [theme.breakpoints.down("md")]: {
+      fontSize: "1.6rem",
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.2rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.9rem",
+    },
+  },
 }));
 
 const General = ({ player }) => {
@@ -33,18 +47,17 @@ const General = ({ player }) => {
   return (
     // team details on left
     <div className="userTeamDetails">
-      <Typography color="primary" className="userTeamName" variant="h5">
-        {player.teamName}
-      </Typography>
-
       <div className="userTeamDetails">
+        <Typography className={classes.team} variant="h5">
+          {player.teamName}
+        </Typography>
         <Typography
           color="primary"
           variant="h4"
           className={classes.userTeamName}
           variant="subtitle1"
         >
-          {player.teamName}
+          {player.initials}
         </Typography>
 
         <Typography color="secondary" variant="h5">
