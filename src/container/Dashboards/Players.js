@@ -77,7 +77,7 @@ const Players = ({ players }) => {
                 </TableCell>
                 <TableCell>
                   {" "}
-                  <Typography color="primary">Base Price </Typography>{" "}
+                  <Typography color="primary">Base Price</Typography> {" "}
                 </TableCell>
               </TableRow>
             </TableHead>
