@@ -40,7 +40,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
   const [biddingValue, setbiddingValue] = useState(parseInt(player.maxbid));
   const [bidDisplay, setbidDisplay] = useState([]);
   const [balance, setBalance] = useState(0);
-  const [Display, setDisplay] = useState("false");
+  //const [Display, setDisplay] = useState("false");
   //console.log(teamId);
 
   const sendBid = (e) => {
@@ -95,6 +95,12 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
             parseInt(doc.data().baseprice) === parseInt(doc.data().maxbid) &&
             player.maxbidBy !== ""
           ) {
+            if (
+              parseInt(doc.data().maxbid) < 100 &&
+              parseInt(doc.data().maxbid) >= 0
+            )
+              setbiddingValue(parseInt(doc.data().maxbid) + 5);
+          } else {
             if (
               parseInt(doc.data().maxbid) < 100 &&
               parseInt(doc.data().maxbid) >= 0
@@ -203,8 +209,18 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                       </Typography>
                       <Typography className={classes.playerDetails}>
                         {" "}
+                        Club: {player.club}
+                      </Typography>
+                      <Typography className={classes.playerDetails}>
+                        {" "}
                         Position: {player.position}
                       </Typography>
+                    </div>
+
+                    {/* </Grid> */}
+                    {/* <Grid item xs={3}> */}
+
+                    <div>
                       <Typography className={classes.playerDetails}>
                         {" "}
                         Rating: {player.rating}
@@ -214,28 +230,6 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                         Wage: {player.wage}
                       </Typography>
                     </div>
-
-                    {/* </Grid> */}
-                    {/* <Grid item xs={3}> */}
-
-                    {/* <div>
-                      <Typography className={classes.playerDetails}>
-                        {" "}
-                        Wickets: {player.wickets}
-                      </Typography>
-                      <Typography className={classes.playerDetails}>
-                        {" "}
-                        Economy: {player.economy}
-                      </Typography>
-                      <Typography className={classes.playerDetails}>
-                        {" "}
-                        Bowling Average: {player.Bowlavg}
-                      </Typography>
-                      <Typography className={classes.playerDetails}>
-                        {" "}
-                        Rating: {player.rating}
-                      </Typography>
-                    </div> */}
                   </div>
                   {/* </Grid> */}
                 </div>

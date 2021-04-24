@@ -1,4 +1,10 @@
-import { TableCell, TableRow, withStyles } from "@material-ui/core";
+import {
+  Button,
+  TableCell,
+  TableRow,
+  TextField,
+  withStyles,
+} from "@material-ui/core";
 import React, { useState } from "react";
 import { db } from "../../config/Firebase";
 const StyledTableCell = withStyles((theme) => ({
@@ -47,25 +53,29 @@ const AllTeams = ({ team }) => {
 
         <form onSubmit={sendBalance}>
           <StyledTableCell>
-            <input
+            <TextField
               type="number"
               onChange={(event) => {
                 event.preventDefault();
                 setBalance(event.target.value);
               }}
             />
-            <button type="submit">Update</button>
+            <Button variant="contained" color="secondary" type="submit">
+              Update
+            </Button>
           </StyledTableCell>
           <StyledTableCell>{team.data.teamWage}</StyledTableCell>
           <StyledTableCell>
-            <input
+            <TextField
               type="number"
               onChange={(event) => {
                 event.preventDefault();
                 setWage(event.target.value);
               }}
             />
-            <button type="submit">Update</button>
+            <Button variant="contained" color="secondary" type="submit">
+              Update
+            </Button>
           </StyledTableCell>
         </form>
       </StyledTableRow>

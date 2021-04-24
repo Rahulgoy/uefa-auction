@@ -45,9 +45,9 @@ const Navbar = (props) => {
 
       <li className="li">
         {" "}
-        <NavLink to="/" className={classes.linkUnderline}>
+        <a href="http://www.econtiet.team/" className={classes.linkUnderline}>
           <a className="hover-line">Home</a>
-        </NavLink>{" "}
+        </a>{" "}
       </li>
       <li className="li">
         {" "}
@@ -86,6 +86,12 @@ const Navbar = (props) => {
           </NavLink>
         </Button>{" "}
       </li> */}
+      <li className="li">
+        {" "}
+        <a href="http://www.econtiet.team/" className={classes.linkUnderline}>
+          <a className="hover-line">Home</a>
+        </a>{" "}
+      </li>
       <li className="li">
         {" "}
         <NavLink to="/signin" className={classes.linkUnderline}>

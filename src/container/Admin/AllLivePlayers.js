@@ -16,15 +16,21 @@ const AllLivePlayers = ({ player }) => {
     team: "",
     class: "",
   });
-  const assign = (e) => {
+  const refresh = (e) => {
     e.preventDefault();
     db.collection("refresh").doc("live").update({
       value: "true",
     });
     db.collection("players").doc(player.data.name).update({
+      display: "false",
+    });
+  };
+  const assign = (e) => {
+    e.preventDefault();
+
+    db.collection("players").doc(player.data.name).update({
       team: player.data.maxbidBy,
       status: "close",
-      display: "false",
     });
     if (player.data.maxbidBy !== "") {
       const ref3 = db.collection("users").doc(player.data.maxbidBy);
@@ -41,6 +47,7 @@ const AllLivePlayers = ({ player }) => {
         //}
       });
     }
+    setTimeout("window.location.reload();", 3000);
   };
 
   const handleChange = (e) => {
@@ -127,6 +134,7 @@ const AllLivePlayers = ({ player }) => {
             />
           </td>
           <button type="submit">Update</button>
+          <button onClick={refresh}>Refresh</button>
           <button onClick={assign}>Assign Team</button>
         </form>
       </div>

@@ -61,7 +61,7 @@ const SilentBidding = ({ auth, playerB }) => {
         db.collection("refresh").doc("silent").update({
           value: "false",
         });
-        setTimeout("window.location.reload();", 4000);
+        setTimeout("window.location.reload();", 3000);
       }
     });
   const fetchSilent = () => {
@@ -105,7 +105,7 @@ const SilentBidding = ({ auth, playerB }) => {
           color="primary"
           align="center"
         >
-          Silent Bidding
+          CLOSED AUCTION
         </Typography>
 
         <Container>
@@ -152,7 +152,9 @@ const SilentBidding = ({ auth, playerB }) => {
                       </TableCell>
                       <TableCell>
                         {" "}
-                        <Typography color="primary">Max Bid</Typography>{" "}
+                        <Typography color="primary">
+                          Current Bid
+                        </Typography>{" "}
                       </TableCell>
                       <TableCell>
                         {" "}

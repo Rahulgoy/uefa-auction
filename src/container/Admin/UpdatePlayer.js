@@ -12,6 +12,7 @@ import {
   TableRow,
   Paper,
   withStyles,
+  Typography,
 } from "@material-ui/core";
 import AllLivePlayers from "./AllLivePlayers";
 import AllSilentPlayers from "./AllSilentPlayers";
@@ -54,7 +55,7 @@ const UpdatePlayer = ({ auth }) => {
         console.log("Could not fetch");
       });
   };
-  const fetchSilent = () => {
+  /* const fetchSilent = () => {
     db.collection("players")
       .where("category", "==", "silent")
       .get()
@@ -72,7 +73,7 @@ const UpdatePlayer = ({ auth }) => {
       .catch((error) => {
         console.log("Could not fetch");
       });
-  };
+  }; */
 
   console.log(silentPlayers);
   /* let arr = Object.entries(silentPlayers);
@@ -80,14 +81,15 @@ const UpdatePlayer = ({ auth }) => {
   useEffect(() => {
     console.log("Working....");
     fetchLive();
-    fetchSilent();
+    /* fetchSilent(); */
   }, []);
-  if (auth.uid !== "HwV4GQfs7kQk6NAGxeHwsInIMfs2") return <Redirect to="/" />;
+  if (auth.uid !== "HwV4GQfs7kQk6NAGxeHwsInIMfs2")
+    return <Redirect to="/dashboard" />;
 
   return (
     <MuiThemeProvider theme={adminTheme}>
       <Container>
-        <h3>Live</h3>
+        <Typography variant="h1">Live</Typography>
 
         <div className="tableWrapper">
           <div className="black">
@@ -117,7 +119,7 @@ const UpdatePlayer = ({ auth }) => {
                           //playerId={playerId}
                         />
                       ) : (
-                        console.log("No Live player")
+                        <Typography variant="h3">No Live Player</Typography>
                       );
                     })}
                   </TableBody>
@@ -126,11 +128,10 @@ const UpdatePlayer = ({ auth }) => {
             </div>
           </div>
         </div>
-        <h3>Silent</h3>
+        {/* <h3>Silent</h3>
 
         <div className="tableWrapper">
           <div className="black">
-            {/* <img src={BlurredImage} style={{backgroundRepeat: 'cover'}}></img> */}
             <div className="backText">
               <TableContainer>
                 <Table className="table" aria-label="customized table">
@@ -164,7 +165,7 @@ const UpdatePlayer = ({ auth }) => {
               </TableContainer>
             </div>
           </div>
-        </div>
+        </div> */}
       </Container>
     </MuiThemeProvider>
   );

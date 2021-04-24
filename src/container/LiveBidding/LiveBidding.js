@@ -1,3 +1,4 @@
+import { Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
@@ -14,7 +15,7 @@ const LiveBidding = ({ auth }) => {
         db.collection("refresh").doc("live").update({
           value: "false",
         });
-        setTimeout("window.location.reload();", 4000);
+        setTimeout("window.location.reload();", 3000);
       }
     });
   useEffect(() => {
@@ -44,7 +45,14 @@ const LiveBidding = ({ auth }) => {
           teamId={auth.uid}
         />
       ) : (
-        <h1>No Player to Bid</h1>
+        <Typography
+          variant="h2"
+          color="primary"
+          align="center"
+          style={{ marginTop: "5%" }}
+        >
+          NO PLAYER TO BID
+        </Typography>
       )}
     </div>
   );

@@ -15,8 +15,6 @@ import {
 import { Divider } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
-
-
 const formAlignStyle = {
   backgroundColor: "#010202",
   height: "100vh",
@@ -48,7 +46,7 @@ class SignIn extends Component {
     if (auth.uid) return <Redirect to="/dashboard" />;
 
     return (
-      <div style={formAlignStyle} className='base-container'>
+      <div style={formAlignStyle} className="base-container">
         <CssBaseline />
 
         <Grid
@@ -57,14 +55,14 @@ class SignIn extends Component {
           direction="column"
           alignItems="center"
           justify="center"
-          xs={12}
+          xs={8}
           md={8}
           lg={4}
           style={{
             position: "absolute",
             transform: "translateX(-50%)",
             left: "50%",
-            top: "10%",
+            top: "12%",
             backgroundColor: "white",
             background: "rgba(255,255,255)",
             borderRadius: "10px",
@@ -80,14 +78,14 @@ class SignIn extends Component {
           </Avatar>
 
           {/* form header */}
-          <Typography component="h1" variant="h4" style={{ fontWeight: "600" }} className='header'>
-            Sign In
+          <Typography component="h1" variant="h4" style={{ fontWeight: "600" }}>
+            Log In
           </Typography>
 
           {/* signin form */}
-          <Grid item xs={10} md={6} lg={12} className='content'>
+          <Grid item xs={10} md={6} lg={12}>
             <Box>
-              <form onSubmit={this.handleSubmit} className='form'>
+              <form onSubmit={this.handleSubmit}>
                 <TextField
                   variant="outlined"
                   margin="normal"
@@ -118,19 +116,19 @@ class SignIn extends Component {
                 <Button
                   type="submit"
                   variant="contained"
-                  color="primary"
+                  color="secondary"
                   fullWidth
                   style={{
                     margin: "24px 0px 16px",
                   }}
-                  className='footer'
+                  className="footer"
                 >
-                  Sign In
+                  Log In
                 </Button>
 
-                <div className="center red-text">
+                <Typography variant="body1">
                   {authError ? <p>{authError}</p> : null}
-                </div>
+                </Typography>
               </form>
             </Box>
           </Grid>

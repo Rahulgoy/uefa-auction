@@ -35,6 +35,17 @@ const theme = createMuiTheme({
 const Dashboard = ({ auth }) => {
   const [team, setTeam] = useState(null);
   const classes = useStyles();
+
+  db.collection("refresh")
+    .doc("live")
+    .onSnapshot((snapshot) => {
+      if (snapshot.data().value === "true") {
+        db.collection("refresh").doc("live").update({
+          value: "false",
+        });
+        setTimeout("window.location.reload();", 3000);
+      }
+    });
   const fetchTeam = () => {
     db.collection("users").onSnapshot((snapshot) => {
       const result = snapshot.docs.map((doc) => ({
