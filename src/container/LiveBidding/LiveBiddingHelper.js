@@ -11,25 +11,13 @@ import theme from "../../assets/js/DarkTheme";
 import "../../assets/css/liveBidding.css";
 
 const useStyles = makeStyles((theme) => ({
+  heading: {
+    color: 'goldenrod'
+  },
+
   leftGrid: {
     padding: "20px",
   },
-  playerDetailsWrapper: {},
-  playerDetails: {
-    // color: "#1B2C89", // blue
-    // color: "#D7A864", // golden
-    // color: "#fff", // golden
-    // fontWeight: "700",
-    // marginBottom: "10px",
-    // marginLeft: '2rem',
-    // fontSize: "1.5em",
-  },
-  // bidSection: {
-  //   marginTop: "40px",
-  //   [theme.breakpoints.down('md')]: {
-  //     marginBottom: '50px'
-  //   }
-  // },
   bidButton: {
     border: "2px solid black",
     padding: "5px 20px",
@@ -157,6 +145,15 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
 
   return (
     <Container style={{ marginTop: "50px", width: "100%" }}>
+        <Typography
+          variant="h3"
+          className={classes.heading}
+          color="primary"
+          align="center"
+        >
+          LIVE AUCTION
+        </Typography>
+
       <Grid container justify="center" spacing={3}>
         <Grid item xs={11} sm={10} md={6} lg={6} display="inline">
           <div className={classes.leftGrid}>
@@ -206,7 +203,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                       <Typography
                         className="playerDetails"
                         variant="h6"
-                        style={{ fontWeight: "600" }}
+                        style={{fontWeight: '600', color: 'goldenrod'}}
                       >
                         {" "}
                         National Team: {player.nationalTeam}
@@ -214,7 +211,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                       <Typography
                         className="playerDetails"
                         variant="h6"
-                        style={{ fontWeight: "600" }}
+                        style={{fontWeight: '600', color: 'goldenrod'}}
                       >
                         {" "}
                         Club: {player.club}
@@ -222,7 +219,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                       <Typography
                         className="playerDetails"
                         variant="h6"
-                        style={{ fontWeight: "600" }}
+                        style={{fontWeight: '600', color: 'goldenrod'}}
                       >
                         {" "}
                         Position: {player.position}
@@ -236,7 +233,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                       <Typography
                         className="playerDetails"
                         variant="h6"
-                        style={{ fontWeight: "600" }}
+                        style={{fontWeight: '600', color: 'goldenrod'}}
                       >
                         {" "}
                         Rating: {player.rating}
@@ -244,10 +241,10 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                       <Typography
                         className="playerDetails"
                         variant="h6"
-                        style={{ fontWeight: "600" }}
+                        style={{fontWeight: '600', color: 'goldenrod'}}
                       >
                         {" "}
-                        Wage: {player.wage}
+                        Wage: € {player.wage} M
                       </Typography>
                     </div>
                   </div>
@@ -259,10 +256,10 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                     <Typography
                       color="primary"
                       variant="h4"
-                      style={{ fontWeight: "600" }}
+                      style={{fontWeight: '600', color: 'goldenrod'}}
                     >
                       {" "}
-                      Base Price: {player.baseprice} M{" "}
+                      Base Price: € {player.baseprice} M{" "}
                     </Typography>
                     {/* {player.maxbidBy === teamId ? <h3>WINNING</h3> : console.log("False")} */}
                     <form>
@@ -276,7 +273,7 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                               style={{ backgroundColor: "#3160fd" }}
                             >
                               <Typography variant="h6" color="primary">
-                                {biddingValue}M Bid{" "}
+                              € {biddingValue}M Bid{" "}
                               </Typography>
                             </button>
                           ) : (
@@ -284,13 +281,13 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                               type="submit"
                               disabled
                               className={classes.bidButton}
-                              style={{ backgroundColor: "#0255c25b" }}
+                              style={{ backgroundColor: "#555" }}
                             >
                               <Typography
                                 variant="h6"
                                 style={{ color: "#fff" }}
                               >
-                                {biddingValue}M Bid{" "}
+                                € {biddingValue}M Bid{" "}
                               </Typography>
                             </button>
                           ),
@@ -324,11 +321,13 @@ const LiveBiddingHelper = ({ player, playerId, teamId }) => {
                 <Typography
                   variant="h3"
                   color="primary"
+                  align='center'
                   style={{
                     fontWeight: "bold",
-                    fontSize: "3em",
+                    fontSize: "2em",
                     textTransform: "uppercase",
                     // marginTop: "10px",
+                    marginBottom: '10px'
                   }}
                 >
                   Bidding History

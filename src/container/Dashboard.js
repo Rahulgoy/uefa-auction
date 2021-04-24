@@ -73,6 +73,16 @@ const Dashboard = ({ auth }) => {
   if (!auth.uid) return <Redirect to="/signin" />;
   return (
     <div className={classes.root}>
+    <Typography variant="h3" align='center'
+      style={{
+      color:'goldenrod',
+      // fontWeight: "bold",
+      textTransform: "uppercase",
+      marginBottom:'30px'
+    }}>
+        Dashboard
+    </Typography>
+    
       <Grid container spacing={2}>
         <Grid item xs={3}>
           <Paper className={classes.paper}>

@@ -48,9 +48,7 @@ const General = ({ player }) => {
     // team details on left
     <div className="userTeamDetails">
       <div className="userTeamDetails">
-        <Typography className={classes.team} variant="h5">
-          {player.teamName}
-        </Typography>
+
         <Typography
           color="primary"
           variant="h4"
