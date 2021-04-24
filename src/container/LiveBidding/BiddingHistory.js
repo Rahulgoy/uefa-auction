@@ -7,7 +7,9 @@ import { makeStyles } from "@material-ui/core";
 import "../../assets/css/biddingHistory.css";
 
 const useStyles = makeStyles({
-  root: {},
+  root: {
+    // s
+  },
 });
 
 const BiddingHistory = forwardRef(({ bid }, ref) => {
@@ -44,17 +46,17 @@ const BiddingHistory = forwardRef(({ bid }, ref) => {
         <div className="biddingHistorySection">
           {" "}
           <Typography
-            variant="h5"
-            style={{ marginRight: "10px", color: "#fff", fontWeight: "700" }}
+            variant="h6" 
+            style={{ marginLeft:'40px', color: "goldenrod", fontWeight: "500", wordSpacing: '5px' }}
             className="teamNameOnLeft"
           >
             {" "}
-            {team.teamName}
+            {team.teamName} &nbsp;
             {"("}
             {team.initials}
             {")"}:{" "}
           </Typography>{" "}
-          <Typography variant="h6" className="bidOnRight">
+          <Typography variant="h6" className="bidOnRight" style={{color: 'white', marginLeft: '20px'}}>
             {" "}
             {bid.biddingprice}
           </Typography>

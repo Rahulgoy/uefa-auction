@@ -38,14 +38,7 @@ const General = ({ player }) => {
       </Typography>
 
       <div className="userTeamDetails">
-        <Typography
-          color="primary"
-          variant="h4"
-          className={classes.userTeamName}
-          variant="subtitle1"
-        >
-          {player.teamName}
-        </Typography>
+
 
         <Typography color="secondary" variant="h5">
           {player.teamBalance ? player.teamBalance : "No Balance"}M
