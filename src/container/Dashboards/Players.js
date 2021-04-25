@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import {
   TableCell,
@@ -15,6 +16,7 @@ import {
   TableHead,
 } from "@material-ui/core";
 import DisplayPlayer from "./DisplayPlayer";
+import { authIsReady } from "react-redux-firebase";
 const StyledTableCell = withStyles((theme) => ({}))(TableCell);
 const StyledTableRow = withStyles((theme) => ({}))(TableRow);
 
@@ -41,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Players = ({ players }) => {
+const Players = ({ players, teamId, auth }) => {
   const classes = useStyles();
   //console.log("length", players.length);
   if (players.length < 1) {
@@ -71,10 +73,13 @@ const Players = ({ players }) => {
                   {" "}
                   <Typography color="primary">Wage </Typography>
                 </TableCell>
-                <TableCell>
-                  {" "}
-                  <Typography color="primary">Highest Bid</Typography>{" "}
-                </TableCell>
+                {teamId !== null && teamId === auth.uid ? (
+                  <TableCell>
+                    {" "}
+                    <Typography color="primary">Highest Bid</Typography>{" "}
+                  </TableCell>
+                ) : null}
+
                 <TableCell>
                   {" "}
                   <Typography color="primary">Base Price</Typography> {" "}
@@ -84,7 +89,13 @@ const Players = ({ players }) => {
 
             <TableBody>
               {players.map((player) => {
-                return <DisplayPlayer key={player.id} player={player} />;
+                return (
+                  <DisplayPlayer
+                    key={player.id}
+                    player={player}
+                    teamId={teamId}
+                  />
+                );
               })}
             </TableBody>
             {/* </Box> */}
@@ -95,4 +106,11 @@ const Players = ({ players }) => {
   );
 };
 
-export default Players;
+const mapStateToProps = (state) => {
+  return {
+    authError: state.auth.authError,
+    auth: state.firebase.auth,
+  };
+};
+
+export default connect(mapStateToProps)(Players);

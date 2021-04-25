@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PlayerSection = ({ teamId }) => {
+const PlayerSection = () => {
   const classes = useStyles();
 
   const [categories, setCategories] = useState([]);
@@ -45,6 +45,7 @@ const PlayerSection = ({ teamId }) => {
   const [team, setTeam] = useState([]);
   const [AllPlayers, setAllPlayers] = useState([]);
   const [filteredPlayers, setFilteredPlayers] = useState([]);
+  const [teamId, setteamId] = useState("");
   const fetchPlayers = () => {
     console.log("Fetching Players");
     db.collection("players").onSnapshot((snapshot) => {
@@ -106,6 +107,7 @@ const PlayerSection = ({ teamId }) => {
       (player) => player.data.team === id
     );
     setFilteredPlayers(filterPlayers);
+    setteamId(id);
   };
   //console.log(AllPlayers);
 
@@ -142,6 +144,7 @@ const PlayerSection = ({ teamId }) => {
               ? filteredPlayers
               : console.log("No player Available")
           }
+          teamId={teamId !== "" ? teamId : null}
         />
       </Grid>
     </Grid>
